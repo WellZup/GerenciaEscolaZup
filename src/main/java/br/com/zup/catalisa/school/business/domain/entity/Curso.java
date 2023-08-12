@@ -1,20 +1,24 @@
 package br.com.zup.catalisa.school.business.domain.entity;
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
+
 @Entity
-@Table(name = "TB_Aluno")
+@Table(name = "TB_Curso")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Aluno {
+public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
     @Column(nullable = false)
-    private  String nome;
+    private String nome;
     @Column(nullable = false)
-    private int idade;
-    @Column(nullable = false)
-    private String email;
+    private Long cargaHora;
 }
