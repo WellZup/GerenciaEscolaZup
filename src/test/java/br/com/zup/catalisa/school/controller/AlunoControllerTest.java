@@ -10,6 +10,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.List;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -74,6 +77,29 @@ public class AlunoControllerTest {
 
 
     }
+
+//    @Test
+//    public void testBuscarTodosAlunos() throws Exception {
+//
+//        AlunoDTO aluno1 = new AlunoDTO(1L,"Wellington", 41, "well@zup.exemplo");
+//        AlunoDTO aluno2 = new AlunoDTO(2L,"Well", 42, "well@zup.exemplo.com");
+//
+//        when(alunoService.buscarTodosAlunos()).thenReturn(List.of(aluno1,aluno2));
+//
+//        mockMvc.perform(get("/v1/aluno/buscar/"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType("application/json"))
+//                .andExpect(jsonPath("$[0].nome").value("Wellington"))
+//                .andExpect(jsonPath("$[0].idade").value(41))
+//                .andExpect(jsonPath("$.email").value("well@zup.exemplo"))
+//
+//                .andExpect(jsonPath("$.nome").value("Well"))
+//                .andExpect(jsonPath("$.idade").value(42))
+//                .andExpect(jsonPath("$.email").value("well@zup.exemplo.com"));
+//
+//        verify(alunoService, times(1)).buscarTodosAlunos();
+//
+//    }
 
 //    @Test
 //    public void testAtualizar() throws Exception {
