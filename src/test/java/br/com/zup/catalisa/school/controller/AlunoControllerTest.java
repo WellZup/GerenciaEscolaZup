@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -20,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class AlunoControllerTest {
 
+    @Autowired
     private MockMvc mockMvc;
 
     @Mock
@@ -78,45 +80,33 @@ public class AlunoControllerTest {
 
     }
 
-//    @Test
-//    public void testBuscarTodosAlunos() throws Exception {
-//
-//        AlunoDTO aluno1 = new AlunoDTO(1L,"Wellington", 41, "well@zup.exemplo");
-//        AlunoDTO aluno2 = new AlunoDTO(2L,"Well", 42, "well@zup.exemplo.com");
-//
-//        when(alunoService.buscarTodosAlunos()).thenReturn(List.of(aluno1,aluno2));
-//
-//        mockMvc.perform(get("/v1/aluno/buscar/"))
-//                .andExpect(status().isOk())
-//                .andExpect(content().contentType("application/json"))
-//                .andExpect(jsonPath("$[0].nome").value("Wellington"))
-//                .andExpect(jsonPath("$[0].idade").value(41))
-//                .andExpect(jsonPath("$.email").value("well@zup.exemplo"))
-//
-//                .andExpect(jsonPath("$.nome").value("Well"))
-//                .andExpect(jsonPath("$.idade").value(42))
-//                .andExpect(jsonPath("$.email").value("well@zup.exemplo.com"));
-//
-//        verify(alunoService, times(1)).buscarTodosAlunos();
-//
-//    }
+    @Test
+    public void testBuscarTodosAlunos() throws Exception {
 
-//    @Test
-//    public void testAtualizar() throws Exception {
-//
-//        AlunoDTO aluno1 = new AlunoDTO(1L, "Wellington", 41, "well@zup.com");
-//        when(alunoService.atualizar(anyLong(), any(AlunoDTO.class))).thenReturn(new AlunoDTO());
-//
-//        mockMvc.perform(put("/v1/alunos/atualizar/1")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content("{\"id\": 1L, \"nome\": \"Well\", \"idade\": 42, \"email\": \"well@zup.com.br\"}"))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.id").value(1L))
-//                .andExpect(jsonPath("$.nome").value("Well"))
-//                .andExpect(jsonPath("$.idade").value(42))
-//                .andExpect(jsonPath("$.email").value("well@zup.com.br"));
-//        verify(alunoService, times(1)).atualizar(anyLong(), any(AlunoDTO.class));
-//    }
+        AlunoDTO aluno1 = new AlunoDTO(1L,"Wellington", 41, "well@zup.exemplo");
+
+
+        when(alunoService.buscarPorId(1L)).thenReturn(aluno1);
+
+        mockMvc.perform(get("/v1/aluno/buscarid/1"));
+
+
+        verify(alunoService, times(1)).buscarPorId(1L);
+
+    }
+
+    @Test
+    public void testAtualizar() throws Exception {
+
+        AlunoDTO aluno1 = new AlunoDTO(1L, "Wellington", 41, "well@zup.com");
+        when(alunoService.atualizar(1L, new AlunoDTO())).thenReturn(aluno1);
+
+        mockMvc.perform(put("/v1/alunos/atualizar/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"id\": 1L, \"nome\": \"Well\", \"idade\": 42, \"email\": \"well@zup.com.br\"}"));
+
+        verify(alunoService, times(1)).atualizar(anyLong(), any(AlunoDTO.class));
+    }
 
     @Test
     public void testDeletar () throws Exception {
