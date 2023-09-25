@@ -35,10 +35,15 @@ public class AlunoController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<AlunoDTO> buscarPorId(@PathVariable Long id) {
         AlunoDTO alunoDTO = alunoService.buscarPorId(id);
+        try {
+
         if (alunoDTO !=null) {
             return ResponseEntity.ok(alunoDTO);
         }else {
             return ResponseEntity.notFound().build();
+        }
+        }catch (Exception e) {
+            return (ResponseEntity<AlunoDTO>) ResponseEntity.status(HttpStatus.NOT_FOUND);
         }
     }
     @PutMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -53,10 +58,17 @@ public class AlunoController {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         boolean deletado = alunoService.deletar(id);
+
+        try {
+
         if (deletado) {
             return ResponseEntity.noContent().build();
         }else {
             return ResponseEntity.notFound().build();
         }
+        }catch (Exception e) {
+            return (ResponseEntity<Void>) ResponseEntity.status(HttpStatus.NOT_FOUND);
+        }
     }
+
 }
