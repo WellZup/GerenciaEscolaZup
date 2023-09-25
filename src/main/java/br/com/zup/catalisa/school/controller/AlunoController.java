@@ -1,6 +1,7 @@
 package br.com.zup.catalisa.school.controller;
 
 import br.com.zup.catalisa.school.business.domain.dto.AlunoDTO;
+import br.com.zup.catalisa.school.business.domain.entity.Aluno;
 import br.com.zup.catalisa.school.business.service.AlunoService;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class AlunoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(alunoCriadoDTO);
     }
    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<AlunoDTO>> buscarTodosAlunos(@PathVariable Long id) {
-        List<AlunoDTO> alunoDTOS = alunoService.buscarTodosAlunos();
+    public ResponseEntity<List<Aluno>> buscarTodosAlunos() {
+        List<Aluno> alunoDTOS = alunoService.buscarTodosAlunos();
         return ResponseEntity.ok(alunoDTOS);
     }
 

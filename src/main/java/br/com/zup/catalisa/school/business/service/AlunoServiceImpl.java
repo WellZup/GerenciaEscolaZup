@@ -5,7 +5,7 @@ import br.com.zup.catalisa.school.business.domain.entity.Aluno;
 import br.com.zup.catalisa.school.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -32,18 +32,19 @@ public class AlunoServiceImpl implements AlunoService {
     }
 
     @Override
-    public List<AlunoDTO> buscarTodosAlunos() {
-        List<Aluno> alunos = alunoRepository.findAll();
-        List<AlunoDTO> alunosDTO = new ArrayList<>();
-
-        for (Aluno aluno : alunos) {
-            AlunoDTO alunoDTO = new AlunoDTO();
-            alunoDTO.setId(aluno.getId());
-            alunoDTO.setNome(aluno.getNome());
-            alunoDTO.setEmail(aluno.getEmail());
-            alunosDTO.add(alunoDTO);
-        }
-        return alunosDTO;
+    public List<Aluno> buscarTodosAlunos() {
+//        List<Aluno> alunos = alunoRepository.findAll();
+//        List<AlunoDTO> alunosDTO = new ArrayList<>();
+//
+//        for (Aluno aluno : alunos) {
+//            AlunoDTO alunoDTO = new AlunoDTO();
+//            alunoDTO.setId(aluno.getId());
+//            alunoDTO.setNome(aluno.getNome());
+//            alunoDTO.setEmail(aluno.getEmail());
+//            alunosDTO.add(alunoDTO);
+//        }
+//        return alunosDTO;
+        return alunoRepository.findAll();
     }
 
     @Override
